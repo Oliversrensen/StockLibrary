@@ -31,7 +31,6 @@ void parseFile() {
                     my_file >> ch;
                 }
                 if(temp == "price"){
-                    std::cout << "Price!";
                     temp = "";
                     while(ch != '\"'){
                         my_file >> ch;
