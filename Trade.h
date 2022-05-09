@@ -12,6 +12,7 @@ public:
     std::vector<double> tradeWorth;
 };
 
+Trade SortTrades(Trade&);
 Trade SimulateTrade(std::vector<double>&, std::vector<double>&, std::vector<Candlestick>&, double, int);
 
 

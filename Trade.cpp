@@ -45,3 +45,10 @@ Trade SimulateTrade(std::vector<double>& K, std::vector<double>& D, std::vector<
 
     return trade;
 }
+
+Trade SortTrades(Trade& trade){
+    std::sort(trade.tradeWorth.begin(), trade.tradeWorth.end(),
+              [](const auto& a, const auto& b){return a > b;});
+
+    return trade;
+}

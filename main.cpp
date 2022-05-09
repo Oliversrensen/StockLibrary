@@ -21,8 +21,7 @@ int main(){
 
     Trade trades = SimulateTrade(fastIndicators, slowIndicators, candles, 10000, 14);
 
-    std::sort(trades.tradeWorth.begin(), trades.tradeWorth.end(),
-              [](const auto& a, const auto& b){return a > b;});
+    trades = SortTrades(trades);
 
     for(auto & trade : trades.tradeWorth) {
         std::cout << trade << std::endl;
