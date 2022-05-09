@@ -1,6 +1,3 @@
-//
-// Created by olive on 07/05/2022.
-//
 #include <vector>
 #include "Candlestick.h"
 

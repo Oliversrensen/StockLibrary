@@ -1,7 +1,3 @@
-//
-// Created by olive on 07/05/2022.
-//
-
 #ifndef STOCKLIBRARY_CANDLESTICK_H
 #define STOCKLIBRARY_CANDLESTICK_H
 

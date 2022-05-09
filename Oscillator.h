@@ -1,7 +1,3 @@
-//
-// Created by olive on 08/05/2022.
-//
-
 #ifndef STOCKLIBRARY_OSCILLATOR_H
 #define STOCKLIBRARY_OSCILLATOR_H
 
