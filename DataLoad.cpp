@@ -5,13 +5,13 @@
 #include <string>
 #include <vector>
 
-std::vector<Candlestick> GenerateCandles() {
+std::vector<Candlestick> GenerateCandles(const std::string fileName) {
     std::fstream my_file;
 
     std::vector<Candlestick> candles;
     Candlestick stick;
 
-    my_file.open(R"(C:\Users\olive\Desktop\json-2y\ALKB.json)");
+    my_file.open(R"(C:\Users\olive\Desktop\json-2y\)"+fileName);
 
     if (!my_file) {
         std::cout << "No such file";

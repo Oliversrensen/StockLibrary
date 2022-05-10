@@ -12,21 +12,21 @@ Trade SimulateTrade(std::vector<double>& K, std::vector<double>& D, std::vector<
 
     for (int i = 0; i < K.size(); ++i) {
         if(K[i] > D[i]){
-            if(!K_above && K[i] >= 80){
+            if(!K_above && K[i] <= 20){
                 //BUY
                 boughtAt = candles[i+X].openingPrice;
-                trade.sharesHeld = floor(trade.money / candles[i+X].openingPrice);
-                trade.money = fmod(trade.money, candles[i+X].openingPrice);
+                trade.sharesHeld = floor(trade.money / boughtAt);
+                trade.money = fmod(trade.money, boughtAt);
                 std::cout << "Day " << i << ": " << "bought: " << trade.sharesHeld << " shares at a value of: "
-                << candles[i+X].openingPrice << " for a total of: " << trade.sharesHeld * candles[i+X].openingPrice
-                << " current worth: " << (trade.sharesHeld * candles[i+X].openingPrice) + trade.money << std::endl;
+                << boughtAt << " for a total of: " << trade.sharesHeld * boughtAt
+                << " current worth: " << (trade.sharesHeld * boughtAt) + trade.money << std::endl;
                 K_above = true;
             }
         }
         if(K[i] < D[i]){
-            if(K_above && K[i] <= 20){
+            if(K_above && K[i] >= 80){
                 //SELL
-                trade.tradeWorth.push_back((candles[i+X].openingPrice - boughtAt) * trade.sharesHeld);
+                trade.sellWorth.push_back((candles[i + X].openingPrice - boughtAt) * trade.sharesHeld);
                 trade.money += trade.sharesHeld * candles[i+X].openingPrice;
                 std::cout << "Day " << i << ": " << "sold: " << trade.sharesHeld << " shares at a value of: "
                 << candles[i+X].openingPrice << " for a total of: " << trade.sharesHeld * candles[i+X].openingPrice <<
@@ -37,7 +37,7 @@ Trade SimulateTrade(std::vector<double>& K, std::vector<double>& D, std::vector<
         }
     }
     if(trade.sharesHeld > 0){
-        trade.tradeWorth.push_back((candles.back().openingPrice - boughtAt) * trade.sharesHeld);
+        trade.sellWorth.push_back((candles.back().openingPrice - boughtAt) * trade.sharesHeld);
         trade.money += trade.sharesHeld * candles.back().openingPrice;
     }
 
@@ -47,7 +47,7 @@ Trade SimulateTrade(std::vector<double>& K, std::vector<double>& D, std::vector<
 }
 
 Trade SortTrades(Trade& trade){
-    std::sort(trade.tradeWorth.begin(), trade.tradeWorth.end(),
+    std::sort(trade.sellWorth.begin(), trade.sellWorth.end(),
               [](const auto& a, const auto& b){return a > b;});
 
     return trade;

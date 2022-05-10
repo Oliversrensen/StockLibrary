@@ -9,7 +9,7 @@ class Trade {
 public:
     int sharesHeld;
     double money;
-    std::vector<double> tradeWorth;
+    std::vector<double> sellWorth;
 };
 
 Trade SortTrades(Trade&);
