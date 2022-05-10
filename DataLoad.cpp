@@ -20,6 +20,7 @@ std::vector<Candlestick> GenerateCandles(const std::string fileName) {
         char ch;
         std::string temp;
         std::string price;
+        std::string time;
 
         while (!my_file.eof()) {
             my_file >> ch;
@@ -28,6 +29,20 @@ std::vector<Candlestick> GenerateCandles(const std::string fileName) {
                 while(ch != '\"') {
                     temp += ch;
                     my_file >> ch;
+                }
+                if(temp == "time"){
+                    temp = "";
+                    while(ch != '\"'){
+                        my_file >> ch;
+                    }
+                    my_file >> ch;
+                    my_file >> ch;
+                    my_file >> ch;
+                    while(ch != '\"'){
+                        temp += ch;
+                        my_file >> ch;
+                    }
+                    time = temp;
                 }
                 if(temp == "price"){
                     temp = "";
@@ -59,9 +74,11 @@ std::vector<Candlestick> GenerateCandles(const std::string fileName) {
                         }
                         stick.price.clear();
                         stick.sequence.clear();
+                        stick.time.clear();
                     }
                     stick.price.push_back(std::stod(price));
                     stick.sequence.push_back(std::stoi(temp));
+                    stick.time.push_back(time);
                 }
                 temp = "";
             }

@@ -2,10 +2,13 @@
 #define STOCKLIBRARY_CANDLESTICK_H
 
 
+#include <string>
+
 class Candlestick {
 public:
     std::vector<double> price;
     std::vector<int> sequence;
+    std::vector<std::string> time;
     double openingPrice;
     double closingPrice;
     double maxPrice;

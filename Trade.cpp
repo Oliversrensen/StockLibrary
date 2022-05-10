@@ -17,9 +17,8 @@ Trade SimulateTrade(std::vector<double>& K, std::vector<double>& D, std::vector<
                 boughtAt = candles[i+X].openingPrice;
                 trade.sharesHeld = floor(trade.money / boughtAt);
                 trade.money = fmod(trade.money, boughtAt);
-                std::cout << "Day " << i << ": " << "bought: " << trade.sharesHeld << " shares at a value of: "
-                << boughtAt << " for a total of: " << trade.sharesHeld * boughtAt
-                << " current worth: " << (trade.sharesHeld * boughtAt) + trade.money << std::endl;
+                std::cout << "Day " << i << " at " << candles[i+X].time[0] << " bought: " << trade.sharesHeld << " shares at a value of: "
+                << boughtAt << " for a total of: " << trade.sharesHeld * boughtAt << " current worth: " << (trade.sharesHeld * boughtAt) + trade.money << std::endl;
                 K_above = true;
             }
         }
@@ -28,7 +27,7 @@ Trade SimulateTrade(std::vector<double>& K, std::vector<double>& D, std::vector<
                 //SELL
                 trade.sellWorth.push_back((candles[i + X].openingPrice - boughtAt) * trade.sharesHeld);
                 trade.money += trade.sharesHeld * candles[i+X].openingPrice;
-                std::cout << "Day " << i << ": " << "sold: " << trade.sharesHeld << " shares at a value of: "
+                std::cout << "Day " << i << " at " << candles[i+X].time[0] << " sold: " << trade.sharesHeld << " shares at a value of: "
                 << candles[i+X].openingPrice << " for a total of: " << trade.sharesHeld * candles[i+X].openingPrice <<
                 " current worth: " << trade.money << std::endl;
                 trade.sharesHeld = 0;
