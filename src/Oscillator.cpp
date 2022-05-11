@@ -1,20 +1,21 @@
-#include "Oscillator.h"
-#include "Candlestick.h"
+#include "../include/Oscillator.h"
 #include <vector>
-#include <iostream>
 
 std::vector<double> CalcFastOscillator(const std::vector<Candlestick>& candles, const int X){
 
     std::vector<double> indicators;
 
     double C, L, H;
-    
+
+    //We start at X, as there is not enough data before that to compute the correct K values.
     for (int i = X; i < candles.size(); i++) {
 
+        //Initial values
         C = candles[i-1].closingPrice;
         L = candles[i-1].minPrice;
         H = candles[i-1].maxPrice;
 
+        //Finding the correct L and H
         for (int j = i-X; j < i; j++) {
             if(L > candles[j].minPrice){
                 L = candles[j].minPrice;
@@ -35,7 +36,9 @@ std::vector<double> CalcSlowOscillator(const std::vector<double>& KValues, const
 
     double temp = 0;
 
+    //Compute the D values
     for (int i = 0; i < KValues.size(); i++) {
+        //To ensure that K and D have equally many values, the first Y D values will just be the corresponding K value.
         if(i < Y) {
             indicators.push_back(KValues[i]);
         }
@@ -43,8 +46,7 @@ std::vector<double> CalcSlowOscillator(const std::vector<double>& KValues, const
             for (int j = i-Y; j < i; j++) {
                 temp += KValues[j];
             }
-            temp /= Y;
-            indicators.push_back(temp);
+            indicators.push_back(temp/Y);
             temp = 0;
         }
     }

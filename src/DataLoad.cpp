@@ -1,5 +1,4 @@
-#include "DataLoad.h"
-#include "Candlestick.h"
+#include "../include/DataLoad.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -83,8 +82,8 @@ std::vector<Candlestick> GenerateCandles(const std::string fileName) {
                 temp = "";
             }
         }
-
     }
+
     candles.push_back(stick);
 
     my_file.close();

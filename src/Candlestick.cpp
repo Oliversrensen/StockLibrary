@@ -1,6 +1,7 @@
 #include <vector>
-#include "Candlestick.h"
+#include "../include/Candlestick.h"
 
+//This class is for computing the trajectories of the candles.
 std::vector<Candlestick> ComputeCandlesticks(std::vector<Candlestick>&& candles) {
     for (auto & candle : candles) {
         candle.openingPrice = candle.price[0];
