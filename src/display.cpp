@@ -11,7 +11,7 @@ void DisplayGraph(const std::vector<Candlestick>& candles, const std::vector<dou
     plt::figure_size(1400, 400);
 
     std::vector<double> closingPrices;
-    for (int i = 14; i < candles.size(); ++i) {
+    for (int i = candles.size() - K.size(); i < candles.size(); ++i) {
         closingPrices.push_back(candles[i].closingPrice);
     }
     plt::subplot2grid(2, 1, 0, 0);
